@@ -3848,22 +3848,18 @@ __webpack_require__.r(__webpack_exports__);
     giverate: function giverate() {
       var _this2 = this;
 
-      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email)) {
-        this.processing = true;
-        axios.post('/doctor/rate', {
-          doctorId: this.doctor.id,
-          rate: this.rate,
-          comment: this.comment,
-          email: this.email,
-          name: this.name,
-          phone: this.phone
-        }).then(function (res) {
-          _this2.processing = false;
-          _this2.popup = false;
-        });
-      } else {
-        this.emailerror = true;
-      }
+      this.processing = true;
+      axios.post('/doctor/rate', {
+        doctorId: this.doctor.id,
+        rate: this.rate,
+        comment: this.comment,
+        email: this.email,
+        name: this.name,
+        phone: this.phone
+      }).then(function (res) {
+        _this2.popup = false;
+        _this2.processing = false;
+      });
     }
   }
 });
@@ -4811,9 +4807,9 @@ __webpack_require__.r(__webpack_exports__);
       isAdmin: false,
       userDropdownMenu: false,
       currentUrl: '',
-      doctorLink: 'http://tiruhakim.com/finddoctors',
-      homeLink: 'http://tiruhakim.com/',
-      hospitalLink: 'http://tiruhakim.com/findhospitals'
+      doctorLink: 'http://127.0.0.1:8000/finddoctors',
+      homeLink: 'http://127.0.0.1:8000/',
+      hospitalLink: 'http://127.0.0.1:8000/findhospitals'
     };
   },
   mounted: function mounted() {
@@ -5056,10 +5052,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
 //
 //
 //
@@ -48252,7 +48244,8 @@ var render = function() {
           ? _c(
               "div",
               {
-                staticClass: "absolute top-5 left-1/4 z-20 rounded-xl bg-white"
+                staticClass:
+                  "w-full absolute top-5 lg:left-1/4 z-20 rounded-xl bg-white"
               },
               [
                 _c(
@@ -48433,7 +48426,7 @@ var render = function() {
                       staticClass:
                         "text-xl text-tiruhakim m-1 w-full text-xl p-2 rounded-xl border-2 border-gray-300",
                       attrs: {
-                        type: "text",
+                        type: "email",
                         required: "",
                         placeholder: "email"
                       },
@@ -48550,13 +48543,15 @@ var render = function() {
     _vm._l(_vm.hospitals, function(hospital) {
       return _c("div", { key: hospital.id }, [
         _c("a", { attrs: { href: "/hospital/profile/" + hospital.picture } }, [
-          _c("div", { staticClass: "p-2 m-2" }, [
+          _c("div", { staticClass: "p-2 m-2 flex" }, [
             _c("img", {
-              staticClass: "w-",
-              attrs: { src: "storage/hospitals/" + hospital.picture }
+              staticClass: "w-32",
+              attrs: { src: "/storage/hospitals/" + hospital.picture }
             }),
             _vm._v(" "),
-            _c("p", { staticClass: "text-xl" }, [_vm._v(_vm._s(hospital.name))])
+            _c("p", { staticClass: "mx-2 text-xl" }, [
+              _vm._v(_vm._s(hospital.name))
+            ])
           ])
         ])
       ])
@@ -51267,7 +51262,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "flex w-3/4 m-auto" }, [
+    _c("div", { staticClass: "lg:flex w-3/4 m-auto" }, [
       _vm.doctors.length
         ? _c(
             "div",
@@ -51275,60 +51270,55 @@ var render = function() {
             _vm._l(_vm.filteredDoctors, function(doctor) {
               return _c(
                 "div",
-                {
-                  key: doctor.id,
-                  staticClass: "flex shadow-xl m-3 rounded-xl p-1"
-                },
+                { key: doctor.id, staticClass: "shadow-xl m-3 rounded-xl p-1" },
                 [
-                  _c("img", {
-                    staticClass: "w-32 h-32 rounded-2xl m-1",
-                    attrs: { src: "/storage/icons/hospital_logo.jpg" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "mx-3 my-auto" }, [
-                    _c("p", { staticClass: "text-xl font-bold capitalize" }, [
-                      _vm._v("Dr. " + _vm._s(doctor.name))
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-gray-500 text-xl" }, [
-                      _vm._v(_vm._s(doctor.speciality))
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      [
-                        _c("stars-component", {
-                          attrs: { doctorId: doctor.id }
-                        })
-                      ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "mx-3" }, [
-                    _c(
-                      "ol",
-                      {},
-                      _vm._l(doctor.hospitals, function(hospital) {
-                        return _c("li", { key: hospital.id }, [
-                          _vm._v(_vm._s(hospital.name))
-                        ])
+                  _c(
+                    "a",
+                    {
+                      staticClass: "flex",
+                      attrs: { href: "/doctor/profile/" + doctor.id }
+                    },
+                    [
+                      _c("img", {
+                        staticClass: "w-32 h-32 rounded-full m-1",
+                        attrs: { src: "/storage/doctors/" + doctor.avatar }
                       }),
-                      0
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "mx-3 my-auto" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "bg-tiruhakim text-xl py-2 px-3 text-white rounded-xl",
-                        attrs: { href: "/doctor/profile/" + doctor.id }
-                      },
-                      [_vm._v("view profile")]
-                    )
-                  ])
+                      _vm._v(" "),
+                      _c("div", { staticClass: "mx-3 my-auto" }, [
+                        _c(
+                          "p",
+                          { staticClass: "text-xl font-bold capitalize" },
+                          [_vm._v("Dr. " + _vm._s(doctor.name))]
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "text-gray-500 text-xl" }, [
+                          _vm._v(_vm._s(doctor.speciality))
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          [
+                            _c("stars-component", {
+                              attrs: { doctorId: doctor.id }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "mx-2 my-auto" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass:
+                              "bg-tiruhakim text-xl py-2 px-3 text-white rounded-xl",
+                            attrs: { href: "/doctor/profile/" + doctor.id }
+                          },
+                          [_vm._v("view profile")]
+                        )
+                      ])
+                    ]
+                  )
                 ]
               )
             }),
@@ -51353,9 +51343,11 @@ var render = function() {
                   "my-3 border-2 border-gray-400 rounded-xl py-3 px-10"
               },
               [
-                _c("h2", { staticClass: "text-2xl font-bold text-center" }, [
-                  _vm._v("Sort")
-                ]),
+                _c(
+                  "h2",
+                  { staticClass: "text-base lg:text-2xl font-bold mx-1" },
+                  [_vm._v("Sort")]
+                ),
                 _vm._v(" "),
                 _c("p", [
                   _c("input", {
@@ -51417,12 +51409,14 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "my-3 border-2 border-gray-400 rounded-xl py-3 px-16"
+                  "my-3 border-2 border-gray-400 rounded-xl py-3 px-10"
               },
               [
-                _c("h2", { staticClass: "text-2xl font-bold text-center" }, [
-                  _vm._v("Gender")
-                ]),
+                _c(
+                  "h2",
+                  { staticClass: "text-base lg:text-2xl font-bold mx-1" },
+                  [_vm._v("Gender")]
+                ),
                 _vm._v(" "),
                 _c("p", [
                   _c("input", {
@@ -51436,7 +51430,7 @@ var render = function() {
                     ],
                     staticClass:
                       "m-1 form-radio text-tiruhakim border-2 border-tiruhakim h-8 w-8",
-                    attrs: { value: "male", type: "radio", name: "gender" },
+                    attrs: { type: "radio", value: "male", name: "gender" },
                     domProps: { checked: _vm._q(_vm.gender, "male") },
                     on: {
                       change: [
@@ -51482,12 +51476,14 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "my-3 border-2 border-gray-400 rounded-xl py-3 px-16"
+                  "my-3 border-2 border-gray-400 rounded-xl py-3 px-10"
               },
               [
-                _c("h2", { staticClass: "text-2xl font-bold text-center" }, [
-                  _vm._v("Age")
-                ]),
+                _c(
+                  "h2",
+                  { staticClass: "text-base lg:text-2xl font-bold mx-1" },
+                  [_vm._v("Age")]
+                ),
                 _vm._v(" "),
                 _c("p", [
                   _c("input", {
@@ -51500,7 +51496,7 @@ var render = function() {
                       }
                     ],
                     staticClass:
-                      "form-radio text-tiruhakim border-2 border-tiruhakim h-8 w-8",
+                      "m-1 form-radio text-tiruhakim border-2 border-tiruhakim h-8 w-8",
                     attrs: { type: "radio", value: "under40", name: "age" },
                     domProps: { checked: _vm._q(_vm.age, "under40") },
                     on: {

@@ -73,7 +73,7 @@ class DoctorController extends Controller
      }
      return response()->json(['rate'=>$averagerate]);
    }
-   public function postrate(Request $request)
+   public function postRate(Request $request)
    { 
      $star=$request->rate;
      $comment=$request->comment;
@@ -107,17 +107,6 @@ class DoctorController extends Controller
     $preview->user=User::find($request->userId);
     $preview->save();
     return response()->json(['preview'=>$preview]);
-   }
-   public function rate(Request $request)
-   {
-    $userId=$request->userId;
-    $doctorId=$request->doctorId;
-    $rate=$request->rate;
-    $user=User::find($userId);
-    $doctor=doctor::find($doctorId);
-    $user::syncWithoutDetaching($doctor,['rate'=>$rate]);
-    //evaluation
-    return response()->json(['message'=>'successful']);
    }
    public function getClaimProfile()
    {

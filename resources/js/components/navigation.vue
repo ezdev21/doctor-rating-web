@@ -86,9 +86,9 @@ export default {
       isAdmin:false,
       userDropdownMenu:false,
       currentUrl:'',
-      doctorLink:'http://tiruhakim.com/finddoctors',
-      homeLink:'http://tiruhakim.com/',
-      hospitalLink:'http://tiruhakim.com/findhospitals'
+      doctorLink:'http://127.0.0.1:8000/finddoctors',
+      homeLink:'http://127.0.0.1:8000/',
+      hospitalLink:'http://127.0.0.1:8000/findhospitals'
     }
    },
    mounted(){

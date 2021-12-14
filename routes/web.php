@@ -44,9 +44,8 @@ Route::prefix('doctor')->group(function(){
   Route::get('profile/{id}/edit',[DoctorController::class,'editprofile']);
   Route::post('profile/update',[DoctorController::class,'updateprofile'])->name('doctorprofile.update');
   Route::post('/addSpeciality',[DoctorController::class,'addSpeciality']);
-  Route::get('rate',[DoctorController::class,'getrate']);
   Route::get('averagerate',[DoctorController::class,'averagerate']);
-  Route::post('rate',[DoctorController::class,'postrate']);
+  Route::post('rate',[DoctorController::class,'postRate']);
   Route::get('/rating',[DoctorController::class,'rating']);
   Route::get('/aboutme',[DoctorController::class,'aboutme']);
   Route::get('/hospitals',[DoctorController::class,'hospitals']);

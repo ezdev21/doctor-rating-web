@@ -55,7 +55,7 @@
     </button>
    </div>
    <component :is="component" :doctorId="doctorId" />
-  <div v-if="popup" class="absolute top-5 left-1/4 z-20 rounded-xl bg-white">
+  <div v-if="popup" class="w-full absolute top-5 lg:left-1/4 z-20 rounded-xl bg-white">
    <form @submit.prevent="giverate" class="m-auto rounded-2xl bg-white py-2 px-5">
    <h2 class="text-2xl m-1">how likely are you to recommend Dr <span class="capitalize">{{doctor.name}}?</span></h2>  
    <div class="flex">
@@ -71,7 +71,7 @@
    <input type="text" v-model="name" placeholder="name" class="text-xl text-tiruhakim m-1 w-full text-xl p-2 rounded-xl border-2 border-gray-300"> 
    <p class="text-lg m-1">*anonymous review have lower rating</p>
    <p class="text-2xl m-1">email*(this will not appear in the review)</p>
-   <input type="text" v-model="email" required placeholder="email" class="text-xl text-tiruhakim m-1 w-full text-xl p-2 rounded-xl border-2 border-gray-300"/>
+   <input type="email" v-model="email" required placeholder="email" class="text-xl text-tiruhakim m-1 w-full text-xl p-2 rounded-xl border-2 border-gray-300"/>
    <p v-if="emailerror" class="text-xl text-red-600">please enter a valid email</p>
    <p class="text-2xl m-1">phone*(this will not appear in the review)</p>
    <input type="text" v-model="phone" required placeholder="phone number" class="text-xl text-tiruhakim m-1 w-full text-xl p-2 rounded-xl border-2 border-gray-300">  
@@ -130,17 +130,12 @@ export default {
   },
   methods:{
     giverate(){
-     if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email)){
       this.processing=true;
        axios.post('/doctor/rate',{doctorId:this.doctor.id,rate:this.rate,comment:this.comment,email:this.email,name:this.name,phone:this.phone})
        .then(res=>{
-         this.processing=false;
          this.popup=false;
+         this.processing=false;
        });
-      }
-      else{
-        this.emailerror=true;
-      }
     }   
   }
 }
