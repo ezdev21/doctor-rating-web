@@ -1,10 +1,10 @@
 <template>
  <div class="m-2 lg:m-5 xl:m-5 2xl:m-5">
   <div class="flex">
-    <img :src="'/storage/hospitals/'+hospital.picture" class="w-64 m-3">
+    <img :src="'/storage/hospitals/'+hospital.picture" class="w-96 m-3">
     <div class="text-gray-600 m-2 my-auto">
       <h2 class="text-2xl font-bold capitalize">{{hospital.name}}</h2>
-      <p class="text-2xl capitalize">{{hospital.location}}, {{hospital.city}}</p>
+      <p class="text-2xl capitalize">{{hospital.location}}, {{city.name}}</p>
       <div @click="popup=true" class="cursor-pointer text-4xl">
         <hospitalstars-component :hospitalId="hospitalId"/>
       </div>
@@ -68,6 +68,7 @@ export default {
   props:['hospitalId'],
   data(){
     return {
+     city:{}, 
      hospital:{},
      doctors:[], 
      popup:false,
@@ -81,6 +82,7 @@ export default {
   mounted(){
     axios.get('/hospital/data',{params:{hospitalId:this.hospitalId}})
     .then(res=>{
+      this.city=res.data.city;
       this.hospital=res.data.hospital;
       this.doctors=res.data.doctors;
     });

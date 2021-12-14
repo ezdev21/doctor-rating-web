@@ -54,8 +54,8 @@
         </div>
         <div class="">
            <h2 class="font-bold text-xl mb-3">For MDs</h2>
-          <p><a href="/doctor/claimprofile" class="text-md lg:text-lg xl:text-lg 2xl:text-xl hover:no-underline">Claim a Profile(doctor)</a></p>
-          <p><a href="/hospital/claimprofile" class="text-md lg:text-lg xl:text-lg 2xl:text-xl hover:no-underline">Claim a Profile(hospital)</a></p>
+          <p><a href="/doctor/register" class="text-md lg:text-lg xl:text-lg 2xl:text-xl hover:no-underline">Claim a Profile(doctor)</a></p>
+          <p><a href="/hospital/register" class="text-md lg:text-lg xl:text-lg 2xl:text-xl hover:no-underline">Claim a Profile(hospital)</a></p>
           <p><a href="/helpcenter" class="text-md lg:text-lg xl:text-lg 2xl:text-xl hover:no-underline">Help Center</a></p>  
          </div>
          <div class="">

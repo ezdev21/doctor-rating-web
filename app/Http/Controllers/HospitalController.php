@@ -93,8 +93,9 @@ class HospitalController extends Controller
   public function data(Request $request)
   {
     $hospital=Hospital::find($request->hospitalId);
+    $city=$hospital->city;
     $doctors=$hospital->doctors;
-    return response()->json(['hospital'=>$hospital,'doctors'=>$doctors]);
+    return response()->json(['hospital'=>$hospital,'doctors'=>$doctors,'city'=>$city]);
   }
   public function postregister(Request $request)
   {

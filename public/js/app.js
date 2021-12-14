@@ -3889,6 +3889,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['doctorId'],
   data: function data() {
@@ -3904,7 +3908,7 @@ __webpack_require__.r(__webpack_exports__);
         doctorId: this.doctorId
       }
     }).then(function (res) {
-      _this.hospitals = res.data.hspitals;
+      _this.hospitals = res.data.hospitals;
     });
   }
 });
@@ -4620,6 +4624,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['hospitalId'],
   data: function data() {
     return {
+      city: {},
       hospital: {},
       doctors: [],
       popup: false,
@@ -4638,6 +4643,7 @@ __webpack_require__.r(__webpack_exports__);
         hospitalId: this.hospitalId
       }
     }).then(function (res) {
+      _this.city = res.data.city;
       _this.hospital = res.data.hospital;
       _this.doctors = res.data.doctors;
     });
@@ -48543,9 +48549,16 @@ var render = function() {
     { staticClass: "m-2 p-2" },
     _vm._l(_vm.hospitals, function(hospital) {
       return _c("div", { key: hospital.id }, [
-        _c("p", {}, [_vm._v(_vm._s(hospital.name))]),
-        _vm._v(" "),
-        _c("p", {}, [_vm._v(_vm._s(_vm.day))])
+        _c("a", { attrs: { href: "/hospital/profile/" + hospital.picture } }, [
+          _c("div", { staticClass: "p-2 m-2" }, [
+            _c("img", {
+              staticClass: "w-",
+              attrs: { src: "storage/hospitals/" + hospital.picture }
+            }),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-xl" }, [_vm._v(_vm._s(hospital.name))])
+          ])
+        ])
       ])
     }),
     0
@@ -49944,7 +49957,7 @@ var render = function() {
     [
       _c("div", { staticClass: "flex" }, [
         _c("img", {
-          staticClass: "w-64 m-3",
+          staticClass: "w-96 m-3",
           attrs: { src: "/storage/hospitals/" + _vm.hospital.picture }
         }),
         _vm._v(" "),
@@ -49954,9 +49967,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("p", { staticClass: "text-2xl capitalize" }, [
-            _vm._v(
-              _vm._s(_vm.hospital.location) + ", " + _vm._s(_vm.hospital.city)
-            )
+            _vm._v(_vm._s(_vm.hospital.location) + ", " + _vm._s(_vm.city.name))
           ]),
           _vm._v(" "),
           _c(
