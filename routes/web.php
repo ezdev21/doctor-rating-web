@@ -43,18 +43,18 @@ Route::prefix('doctor')->group(function(){
   Route::get('profile/{id}',[DoctorController::class,'profile'])->name('doctor.profile');
   Route::get('profile/{id}/edit',[DoctorController::class,'editprofile']);
   Route::post('profile/update',[DoctorController::class,'updateprofile'])->name('doctorprofile.update');
-  Route::post('/addSpeciality',[DoctorController::class,'addSpeciality']);
+  Route::post('addSpeciality',[DoctorController::class,'addSpeciality']);
   Route::get('averagerate',[DoctorController::class,'averagerate']);
-  Route::post('rate',[DoctorController::class,'postRate']);
-  Route::get('/rating',[DoctorController::class,'rating']);
-  Route::get('/aboutme',[DoctorController::class,'aboutme']);
-  Route::get('/hospitals',[DoctorController::class,'hospitals']);
+  Route::post('submitrate',[DoctorController::class,'submitRate']);
+  Route::get('rating',[DoctorController::class,'rating']);
+  Route::get('aboutme',[DoctorController::class,'aboutme']);
+  Route::get('hospitals',[DoctorController::class,'hospitals']);
   Route::post('search',[DoctorController::class,'search'])->name('doctor.search');
   Route::get('register',[DoctorController::class,'getRegister']);
   Route::post('register',[DoctorController::class,'postRegister'])->name('doctor.register');
   Route::post('approve',[DoctorController::class,'approve']);
-  Route::post('/edit/{id}',[DoctorController::class,'edit']);
-  Route::post('/delete',[DoctorController::class,'delete']);
+  Route::post('edit/{id}',[DoctorController::class,'edit']);
+  Route::post('delete',[DoctorController::class,'delete']);
   Route::get('emails',[DoctorController::class,'emails']);
 });
 

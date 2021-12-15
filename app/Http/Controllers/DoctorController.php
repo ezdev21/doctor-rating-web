@@ -73,7 +73,7 @@ class DoctorController extends Controller
      }
      return response()->json(['rate'=>$averagerate]);
    }
-   public function postRate(Request $request)
+   public function submitRate(Request $request)
    { 
      $star=$request->rate;
      $comment=$request->comment;

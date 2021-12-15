@@ -55,7 +55,7 @@
     </button>
    </div>
    <component :is="component" :doctorId="doctorId" />
-  <div v-if="popup" class="w-full absolute top-5 lg:left-1/4 z-20 rounded-xl bg-white">
+  <div v-if="popup" class="absolute top-5 left-1/4 z-20 rounded-xl bg-white">
    <form @submit.prevent="giverate" class="m-auto rounded-2xl bg-white py-2 px-5">
    <h2 class="text-2xl m-1">how likely are you to recommend Dr <span class="capitalize">{{doctor.name}}?</span></h2>  
    <div class="flex">
@@ -64,7 +64,7 @@
     <button @click="rate=3" class="text-5xl text-gray-300 hover:text-yellow-500" :class="[rate>=3? 'text-yellow-500':'text-gray-300']">★</button>
     <button @click="rate=4" class="text-5xl text-gray-300 hover:text-yellow-500" :class="[rate>=4? 'text-yellow-500':'text-gray-300']">★</button>
     <button @click="rate=5" class="text-5xl text-gray-300 hover:text-yellow-500" :class="[rate==5? 'text-yellow-500':'text-gray-300']">★</button>
-   </div>   
+   </div>
    <p class="text-2xl m-1">tell us more about your visit.</p>
    <textarea v-model="comment" class="text-xl text-tiruhakim w-full h-28 rounded-xl border-2 border-gray-400"></textarea>
    <p class="text-2xl m-1">display name(optional)</p>
@@ -79,7 +79,7 @@
     Processing
    </button>
    <input v-else type="submit" value="submit" class="py-2 px-4 m-2 text-white bg-tiruhakim text-2xl rounded-2xl"/>  
- </form>  
+  </form>  
    </div>
   </div>
   <div v-if="popup" @click="popup=false" class="absolute -inset-full opacity-50 bg-black z-10"></div>
@@ -131,7 +131,7 @@ export default {
   methods:{
     giverate(){
       this.processing=true;
-       axios.post('/doctor/rate',{doctorId:this.doctor.id,rate:this.rate,comment:this.comment,email:this.email,name:this.name,phone:this.phone})
+       axios.post('/doctor/submitrate',{doctorId:this.doctor.id,rate:this.rate,comment:this.comment,email:this.email,name:this.name,phone:this.phone})
        .then(res=>{
          this.popup=false;
          this.processing=false;

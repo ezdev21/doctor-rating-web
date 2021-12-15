@@ -3849,7 +3849,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.processing = true;
-      axios.post('/doctor/rate', {
+      axios.post('/doctor/submitrate', {
         doctorId: this.doctor.id,
         rate: this.rate,
         comment: this.comment,
@@ -48244,8 +48244,7 @@ var render = function() {
           ? _c(
               "div",
               {
-                staticClass:
-                  "w-full absolute top-5 lg:left-1/4 z-20 rounded-xl bg-white"
+                staticClass: "absolute top-5 left-1/4 z-20 rounded-xl bg-white"
               },
               [
                 _c(
